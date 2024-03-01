@@ -1,0 +1,33 @@
+# "Serverless" is a backend deployment in which the cloud provider dynamically manages the allocation and provisioning of servers. The term "serverless" doesn't mean there are no servers involved. Instead, it means that developers and operators do not have to worry about the servers.
+
+    serverless charge you per request basis,
+
+# Cold start problem
+    that means they are not going to up server unless first request is hitting server Or unless any visit to yor application.
+
+    problem:- 
+    if  no ane visits to website in two hour, so there is no server running. And if suddenly some hit the server then very quickly start the server container. that called cold start problem.
+    on first time someone come they'll see very high latency near 0.5s latency( that latency to start the server ).  
+
+    solution:-
+    start pinging your application every 5s to solve this problem after that it will auto scale server.
+
+
+# Create cloudflare application
+1 --> npm create cloudflare -- <application_name> 
+2 --> select options
+3 --> npm run dev --> run your application locally
+
+npx wrangler login ---> login to wrangler CLI
+
+npx wrangler whoami  ---> give information of logged in account
+
+npm run deploy ---> deploy cloud serverless APIs.
+
+Problem in cloudflare workers
+    API routing is more complicated 
+solution :- you can extracts headers adn check if request path and according to that call function
+    this is too complicated approach
+
+    to resolve that use hono library 
+    # website Link - https://hono.dev

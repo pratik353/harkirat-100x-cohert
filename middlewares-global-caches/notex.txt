@@ -1,0 +1,13 @@
+# Global-caches
+global caches :- another middleware we add at the end of  all routes and it runs if there is any exception.
+                 Error handling middleware and It takes 4 args ( err, req, res, next )
+
+
+# INPUT VALIDATIONS
+library:- zod
+
+It allows us to validate inputs
+
+
+# Authentication
+

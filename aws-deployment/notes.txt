@@ -1,0 +1,87 @@
+# Cloud :- gives you access to virtual machine where you can run your server. 
+            We can't use local server worldwide, because of local machines don't have public IP
+            So, EC2 gives you public Ip
+
+            imp note:-
+            Public IP always changes on stop and start ec2 server
+            to avoid that use elastic IP 
+
+# EC2 servers
+    EC2 stands for Elastic compute version 2
+    1) Elastic:- Can increase/decrease size of machine
+    2) compute:- it's a machine
+
+
+# USE CASES
+1) rent server: EC2 server
+    steps:-
+        1. give name to your application
+        2. select machine type eg. Ubuntu, Windows, MacOs, linux etc.
+        3. Select type of instance eg. Micro ( have less pricing) -> small -> 2xl etc.
+            pricing will increase based on type of instance
+        4. Create new key pair 
+            It gives you remotely access to AWS instance through aws CLI
+            it will download .pem file which used in assess of aws instance
+
+        # Security groups section
+        SSH:- secure shell protocol through you can assess virtual machine
+
+        by default PORTS of http and https
+        1) http:- 80 ( you can access application through http://632.342.3.4) it assumes port listen at PORT 80
+            that why we change PORT of server eg. if we listen on 3000 - you can assess through http://632.342.3.4:300
+        2) https:- 443
+
+        once instance in running state it will give you public Ip and public IPv4 dns  
+
+        5. Click on launch instance:- it will launch the instance on AWS cloud
+
+        don't forget to stop instance when not in use, otherwise it will increase cost/ bill of instance.
+        select instance and click on stop instance option.
+
+        connect to aws instance remotely:-
+        1) go to .pem file location 
+        2) run command:- ssh -i .\harkirat-class-password.pem windows@<publicIP>
+
+        If you gets permission denied error run command
+        chmod 700 <.pem file location> 
+        700 convert in binary eg. -rwx------@ rwx === 111 in binary and rest of ----- === 00
+        used to restrict access an give access.
+
+        terminal commands
+        1) exit --> to exit from instance
+        2) git clone https://<repo address>
+        3) ask for username and password
+            type username 
+            and for password generate  personal token form developer setting in github settings
+        after that CLI will get git access
+
+        # if don't have internet access
+        run command vi /etc/resolv.conf file
+        and insert 
+        nameserver 8.8.8.8 
+        and save file and exit
+
+        install nodejs in ec2 instance
+        with Installing Node Using the Node Version Manager
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh
+        this will show script present into it
+
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+        this will run script and install nvm on ec2
+
+        install nvm --> nvm install <version>
+
+        to open any PORT in ec2
+        add it into inbound port list
+
+        steps:
+        1. Click on security 
+        2. click on your security group in
+        3. click on edit inbound rules
+        4. click on add rule
+        5. select custom tcp ---> give PORT --> select anywere from IPV4
+        6. select custom tcp ---> give PORT --> select anywere from IPV6
+
+        to access server 
+        type public IP with port in address bar eg. 13.201.94.183:8080 --> where you access your deployed remote server
+

@@ -1,0 +1,15 @@
+# Complied languages
+1) first need to compile whole file then need to run
+2) eg. java , c++ Rust, Golang
+
+# interpreted language
+1) go line by line
+2) can run partially if the error comes later
+3) eg. Javascript, Python
+
+# create exe file of .cpp file
+g++ a.cpp -o temp
+
+Topics to be do:-
+1) single treaded vs multi threaded language
+2) subroutines

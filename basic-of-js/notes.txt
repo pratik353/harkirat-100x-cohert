@@ -1,0 +1,13 @@
+# callbacks
+Passing function as arguments called callbacks functions
+eg. const sum = (n1, n2, fnToCall) =>{
+    const result=n1 + n2;
+    fnToCall(result);
+}
+
+const displaySum = (data) =>{
+    console.log(data)
+}
+
+const ans = sum(1, 2, displaySum)
+# metadata in object

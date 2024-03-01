@@ -1,0 +1,1 @@
+export PORT=3007 -------------> create new environment variable ( NOT CREATES .ENV FILE). You can use PORT in your code by process.env.PORT
