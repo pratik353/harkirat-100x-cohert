@@ -1,0 +1,4 @@
+# popular monorepo provider
+1) turborepo
+2) nom workspaces
+3) lernanpx create-turbo@latest

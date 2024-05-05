@@ -1,0 +1,56 @@
+# reverse proxy
+    1. proxy:- listening a service and forwarding to final service  
+    1. reverse proxy is used to map/route multiple ec2 server on PORT 80
+    intercept and inspect incoming client requests before forwarding them.
+
+
+    # install nginx
+    commands:-
+    sudo apt update
+    sudo apt install nginx
+
+    after Installing nginx in ec2 --> ec2 will automatically runs at nginx PORT 80
+
+    Commands
+    #Create reverse proxy
+    sudo rm sudo vi /etc/nginx/nginx.conf ---> remove resolv.conf
+    sudo vi /etc/nginx/nginx.conf ---> edit resolv.conf --> This file contains nginx configuration
+
+    http {
+        server {
+            listen 80;
+            server_name be1.100xdevs.com; --> Domain ( required for use nginx routing)
+
+            location / {
+                proxy_pass http://localhost:8080; --> your server URL with PORT running in ec2 . ie --> localhost of ec2 env 
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade $http_upgrade;
+                proxy_set_header Connection 'upgrade';
+                proxy_set_header Host $host;
+                proxy_cache_bypass $http_upgrade;
+            }
+        }
+    }
+
+    Above code is responsible for Routing of different server on PORT 80 
+
+    sudo nginx -s reload ---> reload nginx server
+
+    IMP:-
+    go to your domain console -->
+    add subDomain( DNS ) which you have pointed in nginx --->
+    select  Type --> a
+    add your ec2 instance public IP field
+
+    in this way this subdomain will access your ec2 server through nginx routing
+
+
+    # Host any domain on your local machine IP
+    run command 
+        sudo vi /etc/host
+        add and entry of your IP with that domain name
+
+# add certificate to your website (SSL)
+
+https://letsencrypt.org/getting-started/ ---> gives you free certificate 
+https://certbot.eff.org/ ---> this website allow to add certificate to domain automatically.

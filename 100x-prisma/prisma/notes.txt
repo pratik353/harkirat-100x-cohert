@@ -1,0 +1,5 @@
+# install prisma:- npm install prisma --save-dev
+# set up Prisma ORM:- npx prisma init --datasource-provider sqlite
+# Create your model in schema.prisma
+# Run a migration to create your database tables with Prisma Migrate
+  npx prisma migrate dev --name init ---> this will sync model changes with database

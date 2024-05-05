@@ -1,0 +1,5 @@
+# Docker
+containers Allows you to isolate your code/ machine from your machine
+containers have own ports
+
+containers:- mini machines networks / filesystem
