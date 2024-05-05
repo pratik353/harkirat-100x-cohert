@@ -5,4 +5,8 @@
 
 
 1) Turborepo:-
-    
+    steps:-
+    install turborepo globally --> npm install turbo --global
+    Or
+    create new turborepo project --> npx create-turbo@latest
+    SELECT WORKSPACE --> npm OR yarn
