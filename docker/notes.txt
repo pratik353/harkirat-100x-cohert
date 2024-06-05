@@ -3,3 +3,44 @@ containers Allows you to isolate your code/ machine from your machine
 containers have own ports
 
 containers:- mini machines networks / filesystem
+
+docker commands:-
+1) docker kill <container_id> --> kill running docker container_id
+2) docker ps --> list all containers running
+3) docker run <image_name> --> run container in image 
+4) docker rmi <image_name> ---> remove image from local
+5) docker build --> 
+
+# What is a Dockerfile
+If you want to create an image from your own code, that you can push to dockerhub, you need to create a Dockerfile for your application.
+A Dockerfile is a text document that contains all the commands a user could call on the command line to create an image.
+
+Docker file content
+From  node:lts-alpine3.20 ---> base image of project
+
+WORKDIR /app  --> what is your woring dir in docker container
+
+COPY . . --> copy all from . ( your project/ source code /everything ) and paste into . ( your working dir )
+
+// Below are all project initialization commands
+RUN npm install
+
+RUN npx prisma generate
+
+RUN npm run build
+
+EXPOSE 3000 ---> set port to docker project and expose to outer network --> same as setting port in command line
+
+CMD [ "node", "dist/index.js" ] --> CMD to execute commands which are in array 
+
+.dockerignore used to ignore files/dirs from coping
+
+run docker container locally command
+docker run -it -p <LOCAL_PORT>:<IMAGE_PORT> <container_name> 
+
+create docker build
+docker build -t <build_name> . ( . as pick from same level ) 
+
+# env variables
+Pass env variables in docker
+command:- docker run -it -p <LOCAL_PORT>:<IMAGE_PORT> -e key=value -e key=value <container_name>    

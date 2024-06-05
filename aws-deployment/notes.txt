@@ -204,3 +204,36 @@ steps:-
                     ---> upload .ppk file in Private key file for authentication input  
                         ---> then click on open and enter ec2 instance username in login as 
         then you'll connect to ec2 instance.
+
+
+Crete bucket for image upload
+1) create bucket 
+2) Go to inside bucket
+3) click on bucket permission
+4) edit bucket policy
+5)  a. click on add statement button
+    b.attach s3 policy ---> search s3 in edit statement 
+    c. search putObject --> check that option
+    d. search getObject --> check that option
+    e. set principle --> *
+6) Add new resource
+    a. select service -> s3
+    b. resource type -> object
+    c. resource ARN --> arn:aws:s3:::{BucketName}/{ObjectName} --> replace your bucketname and put objectname as "*" ( this allows all objects)
+7) Click on save changes
+8) set CORS to bucket 
+    a. click on Cross-origin resource sharing (CORS) edit button
+    b. https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManageCorsUsing.html add example 2 json into cors
+    c. make all origin open --> "AllowedOrigins": ["*"]
+    d. "ExposeHeaders": []
+    e. then save changes
+
+9) Create user to get assess_key and secret_key
+10) attach policy to user --> give aws features access --> give amazon s3 full access 
+11) go to security Credentials --> 
+    a. create access key
+    b. select Application running on aws compute service
+    c. click on next
+    d. click on create assess_key ( don't give assess_key and secret_key to anyone)
+
+    
