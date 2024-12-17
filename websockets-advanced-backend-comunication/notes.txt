@@ -1,0 +1,82 @@
+# Types of communication
+1) Synchronous ( Strong coupling)
+    HTTP ( REST/GraphQL )
+    Websocket ( debatable if sync or async )
+
+2) Asynchronous ( Weak coupling )
+    Messaging queues
+    Pub subs :- always use to backend to backend communication
+    Server-Sent Events
+    Websocket ( debatable if sync or async )
+
+    Websocket :- WebSockets provide a way to establish a persistent, full-duplex communication channel over a single TCP connection between the client (typically a web browser) and the server.
+              always used to BE to frontEnd communication
+
+  WS scaling Link :- https://excalidraw.com/#json=hzSyEaFEXDQse8tGlw7xk,WktvoCIN9CZaUXFUy22snQ 
+
+-------- REACT CODE --------
+import { useEffect, useState } from 'react'
+import './App.css'
+
+function App() {
+  const [socket, setSocket] = useState<WebSocket | null>(null);
+
+  useEffect(() => {
+    const newSocket = new WebSocket('ws://localhost:8080');
+    newSocket.onopen = () => {
+      console.log('Connection established');
+      newSocket.send('Hello Server!');
+    }
+    newSocket.onmessage = (message) => {
+      console.log('Message received:', message.data);
+    }
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [])
+
+  return (
+    <>
+      hi there
+    </>
+  )
+}
+
+export default App
+
+# redis gives you functionalities like queues and pub subs
+  you caN implement pub sub in many ways but redis is the most efficient way to do it.
+    SMS sending is good example of pub sub
+  
+# Redis
+  Redis is an open-source, in-memory data structure store, used as a database, cache, and message broker
+ 
+ Redis uses key value pair values
+ #SET/GET/DELETE in Redis
+ command
+    SET <KEY> <VALUE> 
+    eg. SET username "John"
+
+    GET <KEY> 
+    eg. GET username
+
+    DEL <KEY>
+    eg. DEL username
+
+    #HSET/HGET/HDEL (H = Hash) crates a hash map in redis
+    HSET user:100 name "John Doe" email "user@example.com" age "30"
+    HGET user:100 name
+    HGET user:100 email
+
+  # QUEUES in Redis
+    You can also push to a topic / queue on Redis and other processes can pop from it.
+    
+    Pushing to a queue
+    LPUSH myqueue "Hello"
+    LPUSH myqueue "World"
+
+    Popping from a queue
+    RPOP problems
+    RPOP problems 
+
+    BRPOP problems 0
+    BRPOP problems 30

@@ -43,4 +43,4 @@ docker build -t <build_name> . ( . as pick from same level )
 
 # env variables
 Pass env variables in docker
-command:- docker run -it -p <LOCAL_PORT>:<IMAGE_PORT> -e key=value -e key=value <container_name>    
+command:- docker run -it -p <LOCAL_PORT>:<IMAGE_PORT> -e key=value -e key=value <container_name>        
